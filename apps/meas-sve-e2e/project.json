@@ -1,0 +1,28 @@
+{
+  "root": "apps/meas-sve-e2e",
+  "sourceRoot": "apps/meas-sve-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/meas-sve-e2e/cypress.json",
+        "devServerTarget": "meas-sve:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "meas-sve:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/meas-sve-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["meas-sve"]
+}

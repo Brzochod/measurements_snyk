@@ -1,0 +1,71 @@
+{
+  "root": "apps/meas-rea",
+  "sourceRoot": "apps/meas-rea/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/meas-rea",
+        "index": "apps/meas-rea/src/index.html",
+        "baseHref": "/",
+        "main": "apps/meas-rea/src/main.tsx",
+        "polyfills": "apps/meas-rea/src/polyfills.ts",
+        "tsConfig": "apps/meas-rea/tsconfig.app.json",
+        "assets": ["apps/meas-rea/src/favicon.ico", "apps/meas-rea/src/assets"],
+        "styles": ["apps/meas-rea/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/meas-rea/src/environments/environment.ts",
+              "with": "apps/meas-rea/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "meas-rea:build",
+        "hmr": true,
+        "port": 3001
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "meas-rea:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/meas-rea/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/meas-rea"],
+      "options": {
+        "jestConfig": "apps/meas-rea/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

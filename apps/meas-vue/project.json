@@ -1,0 +1,54 @@
+{
+  "root": "apps/meas-vue",
+  "projectType": "application",
+  "sourceRoot": "apps/meas-vue/src",
+  "targets": {
+    "build": {
+      "executor": "@nx-plus/vue:browser",
+      "options": {
+        "dest": "dist/apps/meas-vue",
+        "index": "apps/meas-vue/public/index.html",
+        "main": "apps/meas-vue/src/main.ts",
+        "tsConfig": "apps/meas-vue/tsconfig.app.json"
+      },
+      "configurations": {
+        "production": {
+          "mode": "production",
+          "filenameHashing": true,
+          "productionSourceMap": true,
+          "css": {
+            "extract": true,
+            "sourceMap": false
+          }
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx-plus/vue:dev-server",
+      "options": {
+        "browserTarget": "meas-vue:build"
+      },
+      "configurations": {
+        "production": {
+          "browserTarget": "meas-vue:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/meas-vue/**/*.{ts,tsx,vue}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/meas-vue"],
+      "options": {
+        "jestConfig": "apps/meas-vue/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

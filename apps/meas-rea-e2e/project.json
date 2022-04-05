@@ -1,0 +1,28 @@
+{
+  "root": "apps/meas-rea-e2e",
+  "sourceRoot": "apps/meas-rea-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/meas-rea-e2e/cypress.json",
+        "devServerTarget": "meas-rea:serve"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "meas-rea:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/meas-rea-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["meas-rea"]
+}

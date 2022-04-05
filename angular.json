@@ -3,6 +3,12 @@
   "projects": {
     "api": "apps/api",
     "api-interfaces": "libs/api-interfaces",
+    "meas-rea": "apps/meas-rea",
+    "meas-rea-e2e": "apps/meas-rea-e2e",
+    "meas-sve": "apps/meas-sve",
+    "meas-sve-e2e": "apps/meas-sve-e2e",
+    "meas-vue": "apps/meas-vue",
+    "meas-vue-e2e": "apps/meas-vue-e2e",
     "measurements": "apps/measurements",
     "measurements-e2e": "apps/measurements-e2e"
   }
