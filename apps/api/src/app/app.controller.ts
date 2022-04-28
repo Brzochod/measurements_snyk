@@ -1,9 +1,8 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 
 import * as DataModel from '@measurements/api-interfaces';
 import * as Data from './db.json';
 import { AppService } from './app.service';
-import { DataItem } from '@measurements/api-interfaces';
 
 @Controller()
 export class AppController {
@@ -16,15 +15,16 @@ export class AppController {
     return this.data;
   }
 
-  @Get('detail')
-  getDetail(id: string): DataModel.DataItem {
+  @Get('detail/:id')
+  getDetail(@Param('id') id: string): DataModel.DataItem {
     return this.data.find((item) => {
-      return item.id == id;
+      console.log(item, id);
+      return item.id === id;
     });
   }
 
   @Post('save')
-  postDetail(item: DataModel.DataItem): boolean {
+  postDetail(@Body() item: DataModel.DataItem): boolean {
     const exists = this.data.findIndex((i) => {
       return i.id == item.id;
     });
