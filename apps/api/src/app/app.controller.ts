@@ -1,15 +1,40 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post } from '@nestjs/common';
 
-import { Message } from '@measurements/api-interfaces';
-
+import * as DataModel from '@measurements/api-interfaces';
+import * as Data from './db.json';
 import { AppService } from './app.service';
+import { DataItem } from '@measurements/api-interfaces';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get('hello')
-  getData(): Message {
-    return this.appService.getData();
+  data = Data.data as DataModel.DataItem[];
+
+  @Get('list')
+  getData(): DataModel.DataItem[] {
+    return this.data;
+  }
+
+  @Get('detail')
+  getDetail(id: string): DataModel.DataItem {
+    return this.data.find((item) => {
+      return item.id == id;
+    });
+  }
+
+  @Post('save')
+  postDetail(item: DataModel.DataItem): boolean {
+    const exists = this.data.findIndex((i) => {
+      return i.id == item.id;
+    });
+
+    if (exists) {
+      this.data[exists] = item;
+    } else {
+      this.data.push(item);
+    }
+
+    return true;
   }
 }
