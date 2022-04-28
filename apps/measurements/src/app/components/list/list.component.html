@@ -1,0 +1,5 @@
+<div *ngFor="let measurement of data$ | async">
+    <div>{{ measurement.id}}</div>
+    <<button [routerLink]="measurement.id" mat-button>Detail</button>
+</div>
+<div>i don work</div>

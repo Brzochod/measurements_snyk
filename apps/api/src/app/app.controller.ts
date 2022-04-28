@@ -17,7 +17,7 @@ export class AppController {
 
   @Get('detail/:id')
   getDetail(@Param('id') id: string): DataModel.DataItem {
-    return this.data.find((item) => {
+    return this.data.find((item) => { 
       return item.id === id;
     });
   }
