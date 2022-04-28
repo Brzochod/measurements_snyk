@@ -18,7 +18,6 @@ export class AppController {
   @Get('detail/:id')
   getDetail(@Param('id') id: string): DataModel.DataItem {
     return this.data.find((item) => {
-      console.log(item, id);
       return item.id === id;
     });
   }
