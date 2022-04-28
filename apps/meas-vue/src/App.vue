@@ -15,7 +15,7 @@
       <td>{{row.t2}}</td>
     </tr>
   </table>
-  <Modal :showModal="true" />
+  <Modal :showModal="isModalVisible" :data="selectedItem" />
 </template>
 
 <script setup lang="ts">
@@ -23,15 +23,14 @@
   import { ref, onMounted } from 'vue'
   import Modal from './components/Modal.vue'
 
-  let data = ref<DataItem[]>([])
-  let selectedItem = ref<DataItem>()
-  let isModalVisible = ref<boolean>(false)
+  const data = ref<DataItem[]>([])
+  const selectedItem = ref<DataItem>()
+  const isModalVisible = ref<boolean>(false)
 
 
   const showModal = (id: string) => {
-    console.log(data.value)
     selectedItem.value = data.value.find(item => item.id === id)
-    console.log(selectedItem.value);
+    isModalVisible.value = true
   }
 
   onMounted(async () => {

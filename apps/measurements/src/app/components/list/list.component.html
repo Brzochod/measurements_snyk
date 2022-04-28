@@ -1,4 +1,4 @@
-<div *ngFor="let measurement of data$ | async">
+<div *ngFor="let measurement of hello$ | async">
     <div>{{ measurement.id}}</div>
     <<button [routerLink]="measurement.id" mat-button>Detail</button>
 </div>

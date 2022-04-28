@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './table.module.scss';
-import { Table, TableHead, TableRow, TableBody, TableCell, Modal } from '@material-ui/core';
+import { Table, TableHead, TableRow, TableBody, TableCell } from '@material-ui/core';
 import { getDetail } from './fetch';
+import Modal from './tableDetail';
 
 type Data = {
     id: string,
@@ -17,7 +18,7 @@ const handleRowClick = async (id: string) => {
 
 const BestTable = ({data}: {data: Data[]}) => {
     return <div className={styles['best-table']}>
-        {renderModal()}
+        <Modal />
         <Table>
             <TableHead>
                 <TableRow>
